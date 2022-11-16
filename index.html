@@ -27,6 +27,9 @@
   ctx.fillStyle = 'blue'
   //描边
   ctx.strokeStyle = 'none'
+  ctx.lineWidth=4
+  //让线条拐点处连续：还是会有锯齿感
+  ctx.lineCap='round'
 
   function drawLine(x1, y1, x2, y2) {
     ctx.beginPath()
@@ -70,8 +73,6 @@
       painting = false
     }
   }
-
-
 </script>
 </body>
 </html>
