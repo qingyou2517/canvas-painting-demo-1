@@ -9,30 +9,25 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="canvas"></div>
-  <script>
-    canvas.onclick=(e)=>{
-      //鼠标点击时的X、Y坐标
-      console.log(e.clientX)
-      console.log(e.clientY)
+<!--canvas默认是inline元素-->
+<!--由于不用新建节点，js也就不用操作dom，比操作DOM画图不知流畅多少倍-->
+<canvas id="canvas" width="100" height="100"></canvas>
+<script>
+  let canvas = document.getElementById('canvas')
+  //canvas占满全屏
+  canvas.width = document.documentElement.clientWidth
+  canvas.height = document.documentElement.clientHeight
 
-      //鼠标点击时创建一个div
-      let div=document.createElement('div')
-      div.style.position='absolute'
-      div.style.left=e.clientX+'px'
-      div.style.top=e.clientY+'px'
-      div.style.border='1px solid red'
-      div.style.width='6px'
-      div.style.height='6px'
-      //让div出现在鼠标的中间，而不是右下角
-      div.style.marginLeft='-3px'
-      div.style.marginTop='-3px'
-      div.style.borderRadius='50%'
-      div.style.backgroundColor='black'
+  let ctx = canvas.getContext('2d')
+  ctx.fillStyle = 'blue'
 
-      //创建的div默认在内存里，让它出现在canvas里
-      canvas.appendChild(div)
-    }
-  </script>
+  canvas.onmousemove = (e) => {
+    console.log(e.clientX)
+    console.log(e.clientY)
+    //鼠标正中心画个矩形
+    ctx.fillRect(e.clientX-5, e.clientY-5, 10, 10)
+  }
+
+</script>
 </body>
 </html>
