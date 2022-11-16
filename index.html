@@ -19,15 +19,31 @@
   canvas.height = document.documentElement.clientHeight
 
   let ctx = canvas.getContext('2d')
-  ctx.fillStyle = 'blue'
+  let painting = false
 
-  canvas.onmousemove = (e) => {
-    console.log(e.clientX)
-    console.log(e.clientY)
-    //鼠标正中心画个矩形
-    ctx.fillRect(e.clientX-5, e.clientY-5, 10, 10)
+  ctx.fillStyle = 'blue'
+  //描边
+  ctx.strokeStyle = 'none'
+
+  //鼠标按下就可以画图
+  canvas.onmousedown = () => {
+    painting = true
   }
 
+  canvas.onmousemove = (e) => {
+    if (painting === true){
+      //鼠标正中心画个圆形
+      ctx.beginPath();
+      ctx.arc(e.clientX, e.clientY, 10, 0, 2 * Math.PI);
+      ctx.stroke();
+      ctx.fill();
+    }
+  }
+
+  //松开鼠标就停止画图
+  canvas.onmouseup = () => {
+    painting = false
+  }
 </script>
 </body>
 </html>
