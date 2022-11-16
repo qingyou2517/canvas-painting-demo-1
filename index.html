@@ -6,8 +6,33 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>canvas 画板</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="canvas"></div>
+  <script>
+    canvas.onclick=(e)=>{
+      //鼠标点击时的X、Y坐标
+      console.log(e.clientX)
+      console.log(e.clientY)
 
+      //鼠标点击时创建一个div
+      let div=document.createElement('div')
+      div.style.position='absolute'
+      div.style.left=e.clientX+'px'
+      div.style.top=e.clientY+'px'
+      div.style.border='1px solid red'
+      div.style.width='6px'
+      div.style.height='6px'
+      //让div出现在鼠标的中间，而不是右下角
+      div.style.marginLeft='-3px'
+      div.style.marginTop='-3px'
+      div.style.borderRadius='50%'
+      div.style.backgroundColor='black'
+
+      //创建的div默认在内存里，让它出现在canvas里
+      canvas.appendChild(div)
+    }
+  </script>
 </body>
 </html>
